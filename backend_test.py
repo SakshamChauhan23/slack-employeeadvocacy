@@ -66,14 +66,15 @@ class SocialRippleAPITester:
         success, response = self.run_test("Get Posts", "GET", "posts", 200)
         if success and isinstance(response, list) and len(response) == 3:
             print(f"   ✅ Found {len(response)} posts as expected")
-            # Check if posts have required fields
-            required_fields = ['id', 'title', 'content', 'author_name', 'author_avatar', 'channel', 'timestamp']
+            # Check if posts have required fields for SocialRipple
+            required_fields = ['id', 'title', 'content', 'category', 'timestamp']
             for i, post in enumerate(response):
                 missing_fields = [field for field in required_fields if field not in post]
                 if missing_fields:
                     print(f"   ⚠️  Post {i+1} missing fields: {missing_fields}")
                 else:
                     print(f"   ✅ Post {i+1} has all required fields")
+                    print(f"      Category: {post.get('category')}, Title: {post.get('title')[:50]}...")
         elif success:
             print(f"   ⚠️  Expected 3 posts, got {len(response) if isinstance(response, list) else 'non-list'}")
         return success, response
