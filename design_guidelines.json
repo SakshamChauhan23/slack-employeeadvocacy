@@ -1,0 +1,183 @@
+{
+  "design_system": {
+    "identity": {
+      "name": "AdvocacyFlow",
+      "archetype": "Soft Utility",
+      "vibe": "Trustworthy, Efficient, Human-Centric",
+      "theme_strategy": "Light Mode (Primary) - Focus on clarity and trust"
+    },
+    "typography": {
+      "font_family": {
+        "headings": "Manrope, sans-serif",
+        "body": "Inter, sans-serif",
+        "mono": "JetBrains Mono, monospace"
+      },
+      "scale": {
+        "h1": "text-4xl font-bold tracking-tight lg:text-5xl",
+        "h2": "text-3xl font-semibold tracking-tight",
+        "h3": "text-2xl font-semibold tracking-tight",
+        "p": "leading-7 [&:not(:first-child)]:mt-6",
+        "small": "text-sm font-medium leading-none"
+      },
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');"
+      ]
+    },
+    "colors": {
+      "palette": {
+        "primary": {
+          "DEFAULT": "#4F46E5",
+          "foreground": "#FFFFFF",
+          "hover": "#4338CA"
+        },
+        "secondary": {
+          "DEFAULT": "#F1F5F9",
+          "foreground": "#0F172A",
+          "hover": "#E2E8F0"
+        },
+        "background": {
+          "app": "#F8FAFC",
+          "card": "#FFFFFF",
+          "modal": "#FFFFFF"
+        },
+        "text": {
+          "primary": "#0F172A",
+          "secondary": "#64748B",
+          "muted": "#94A3B8"
+        },
+        "brand": {
+          "whatsapp": "#25D366",
+          "slack": "#4A154B"
+        },
+        "status": {
+          "success": "#10B981",
+          "error": "#EF4444",
+          "warning": "#F59E0B"
+        }
+      },
+      "gradients": {
+        "subtle_glow": "bg-gradient-to-b from-white to-slate-50",
+        "brand_accent": "bg-gradient-to-r from-indigo-500 to-purple-600"
+      }
+    },
+    "spacing": {
+      "container_padding": "p-6 md:p-8 lg:p-12",
+      "card_padding": "p-6",
+      "section_gap": "gap-8",
+      "item_gap": "gap-4"
+    },
+    "visual_enhancers": {
+      "radius": {
+        "default": "rounded-xl",
+        "card": "rounded-2xl",
+        "button": "rounded-full"
+      },
+      "shadows": {
+        "card": "shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300",
+        "modal": "shadow-2xl",
+        "button": "shadow-sm hover:shadow-md"
+      },
+      "borders": {
+        "subtle": "border border-slate-100",
+        "focus": "ring-2 ring-indigo-500 ring-offset-2"
+      }
+    }
+  },
+  "components": {
+    "layout": {
+      "dashboard": {
+        "type": "Bento Grid Mode B (High Density)",
+        "structure": "Sidebar (Fixed) + Main Feed (Scrollable) + Right Panel (Optional Stats)",
+        "classes": "min-h-screen bg-slate-50/50"
+      }
+    },
+    "message_card": {
+      "description": "The core unit of the feed. Mimics a Slack message but elevated.",
+      "structure": [
+        "Header: Avatar (Left) + Name (Bold) + Time (Muted) + Channel Tag (Badge)",
+        "Body: Text Content (Inter) + Rich Media Preview (Rounded-lg)",
+        "Footer: Action Bar with 'Send to WhatsApp' as primary pill button"
+      ],
+      "styling": "bg-white border border-slate-200/60 rounded-2xl p-6 shadow-sm hover:border-indigo-100 transition-colors"
+    },
+    "otp_modal": {
+      "description": "Clean, focused modal for phone verification.",
+      "structure": [
+        "Title: 'Verify Phone Number'",
+        "Description: 'We sent a code to +1 ***-***-**99'",
+        "Input: Shadcn InputOTP (6 digits)",
+        "Action: 'Verify' Button (Full Width)",
+        "Footer: 'Resend code' link"
+      ],
+      "styling": "max-w-md w-full p-8 rounded-3xl bg-white shadow-2xl"
+    }
+  },
+  "assets": {
+    "images": {
+      "avatars": [
+        {
+          "url": "https://images.unsplash.com/photo-1576558656222-ba66febe3dec?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "alt": "User Avatar - Professional Male",
+          "category": "user_avatar"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1655249481446-25d575f1c054?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "alt": "User Avatar - Professional Female",
+          "category": "user_avatar"
+        }
+      ],
+      "feed_content": [
+        {
+          "url": "https://images.unsplash.com/photo-1758518729685-f88df7890776?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "alt": "Team Meeting Strategy",
+          "category": "feed_post"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1758873268631-fa944fc5cad2?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "alt": "Company Celebration",
+          "category": "feed_post"
+        }
+      ]
+    },
+    "icons": {
+      "library": "lucide-react",
+      "required": ["MessageSquare", "Share2", "ThumbsUp", "Send", "CheckCircle2", "Smartphone", "Lock"]
+    }
+  },
+  "instructions_to_main_agent": {
+    "general": [
+      "Use 'Manrope' for all headings to give a modern, friendly feel.",
+      "Use 'Inter' for body text for maximum readability.",
+      "Implement the 'Send to WhatsApp' flow as a multi-step process: Click Button -> Check if Phone Exists -> (If No) Open OTP Modal -> (If Yes) Open WhatsApp Web.",
+      "Use 'sonner' for all toast notifications (Success/Error).",
+      "Ensure the 'InputOTP' component is used for the verification screen.",
+      "Do not use generic gray backgrounds; use 'slate-50' or very subtle tints.",
+      "Add 'data-testid' to all interactive elements."
+    ],
+    "animations": [
+      "Add 'hover:scale-[1.02]' to message cards for a tactile feel.",
+      "Use 'AnimatePresence' (Framer Motion) for the OTP modal entrance.",
+      "Button clicks should have a subtle 'active:scale-95' effect."
+    ]
+  },
+  "universal_guidelines": [
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy",
+    "Use glass-morphism effects with backdrop filters (12-24px blur)",
+    "You MUST NOT apply universal transition. Eg: 'transition: all'. This results in breaking transforms. Always add transitions for specific interactive elements like button, input excluding transforms",
+    "You MUST NOT center align the app container, ie do not add '.App { text-align: center; }' in the css file. This disrupts the human natural reading flow of text",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯📚🎭🎬🎪🎉🎊🎁🎀🎂🍰🎈🎨🎰💰💵💳🏦💎🪙💸🤑📊📈📉💹🔢🏆🥇 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
+    "Main agent relies on these image URLs. Missing categories (especially sponsor logos) = main agent will use placeholder text which is FORBIDDEN",
+    "Prioritize using pre-existing components from src/components/ui when applicable",
+    "Create new components that match the style and conventions of existing components when needed",
+    "Examine existing components to understand the project's component patterns before creating new ones",
+    "Components MUST use named exports (export const ComponentName = ...)",
+    "Pages MUST use default exports (export default function PageName() {...})",
+    "Use 'sonner' for toasts. Sonner component are located in '/app/src/components/ui/sonner.tsx'"
+  ]
+}
