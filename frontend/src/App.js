@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Dashboard from "@/pages/Dashboard";
+import SlackView from "@/pages/SlackView";
 import { Toaster } from "@/components/ui/sonner";
 
 function App() {
@@ -9,10 +8,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<SlackView />} />
         </Routes>
       </BrowserRouter>
-      <Toaster position="top-center" />
+      <Toaster position="top-right" />
     </div>
   );
 }
