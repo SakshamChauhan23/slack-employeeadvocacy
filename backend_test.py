@@ -142,19 +142,18 @@ class SocialRippleAPITester:
         return success
 
 def main():
-    print("🚀 Starting AdvocacyFlow API Tests...")
+    print("🚀 Starting SocialRipple API Tests...")
     print("=" * 50)
     
-    tester = AdvocacyFlowAPITester()
+    tester = SocialRippleAPITester()
     
     # Run all tests
     tests = [
         tester.test_root_endpoint,
         tester.test_get_posts,
-        tester.test_phone_verification_flow,
-        tester.test_user_phone_check,
-        tester.test_whatsapp_send_unverified,
-        tester.test_event_tracking
+        tester.test_share_post,
+        tester.test_track_event,
+        tester.test_user_stats
     ]
     
     for test in tests:
