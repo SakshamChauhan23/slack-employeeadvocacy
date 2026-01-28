@@ -1,4 +1,4 @@
-import { Hash, MessageSquare, ChevronDown, Plus, Search } from "lucide-react";
+import { Hash, MessageSquare, ChevronDown, Plus } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 export const Sidebar = () => {
@@ -65,23 +65,6 @@ export const Sidebar = () => {
               </Avatar>
             </div>
             <span className="text-[#B89DB9]">William</span>
-          </div>
-        </div>
-
-        <div className="mt-6">
-          <div className="px-4 mb-2 flex items-center justify-between">
-            <span className="text-[#B89DB9] text-sm font-semibold">Apps</span>
-          </div>
-          
-          <div className="slack-sidebar-item">
-            <div className="relative">
-              <Avatar className="h-5 w-5 rounded-sm">
-                <AvatarImage src="https://api.dicebear.com/7.x/bottts/svg?seed=SocialRipple" />
-                <AvatarFallback>PS</AvatarFallback>
-              </Avatar>
-              <div className="presence-indicator"></div>
-            </div>
-            <span>Please Share</span>
           </div>
         </div>
       </div>

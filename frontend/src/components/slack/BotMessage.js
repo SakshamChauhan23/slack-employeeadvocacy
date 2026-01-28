@@ -26,13 +26,13 @@ export const BotMessage = ({ post, onShare, onAction }) => {
       <div className="flex-shrink-0">
         <Avatar className="h-9 w-9 rounded-md">
           <AvatarImage src="https://api.dicebear.com/7.x/bottts/svg?seed=SocialRipple" />
-          <AvatarFallback>PS</AvatarFallback>
+          <AvatarFallback>SR</AvatarFallback>
         </Avatar>
       </div>
 
       <div className="flex-1 min-w-0">
         <div className="flex items-baseline gap-2 mb-1">
-          <span className="font-bold text-[#1D1C1D]">Please Share</span>
+          <span className="font-bold text-[#1D1C1D]">SocialRipple Bot</span>
           <span className="text-xs px-1.5 py-0.5 bg-gray-200 text-gray-700 rounded">APP</span>
           <span className="text-xs text-[#616061]">{formatTime(post.timestamp)}</span>
         </div>

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Sidebar from "@/components/slack/Sidebar";
 import ChannelView from "@/components/slack/ChannelView";
-import DemoPanel from "@/components/slack/DemoPanel";
 import ShareModal from "@/components/slack/ShareModal";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -11,7 +10,7 @@ const API = `${BACKEND_URL}/api`;
 const SlackView = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [shareModal, setShareModal] = useState(null); // { platform, post }
+  const [shareModal, setShareModal] = useState(null);
   const [userId] = useState("user-" + Math.random().toString(36).substr(2, 9));
 
   useEffect(() => {
@@ -68,7 +67,6 @@ const SlackView = () => {
         onShare={handleShare}
         onAction={handleAction}
       />
-      <DemoPanel />
       
       {shareModal && (
         <ShareModal

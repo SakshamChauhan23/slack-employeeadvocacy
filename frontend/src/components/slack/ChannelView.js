@@ -1,4 +1,4 @@
-import { Hash, Search, Users, Info, Pin } from "lucide-react";
+import { Hash, Search, Users, Info } from "lucide-react";
 import BotMessage from "@/components/slack/BotMessage";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -32,18 +32,6 @@ export const ChannelView = ({ posts, loading, onShare, onAction }) => {
             </div>
           ) : (
             <>
-              <div className="px-5 py-4 mb-4">
-                <div className="border-l-4 border-gray-300 pl-3">
-                  <div className="flex items-center gap-2 mb-1">
-                    <Pin className="w-4 h-4 text-gray-500" />
-                    <span className="text-sm font-semibold text-gray-700">Pinned by SocialRipple</span>
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    Welcome to #company-news! This is where the Please Share bot will post content for you to share with your network.
-                  </p>
-                </div>
-              </div>
-
               {posts.map((post) => (
                 <BotMessage
                   key={post.id}
