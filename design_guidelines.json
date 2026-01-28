@@ -1,183 +1,150 @@
 {
   "design_system": {
     "identity": {
-      "name": "AdvocacyFlow",
-      "archetype": "Soft Utility",
-      "vibe": "Trustworthy, Efficient, Human-Centric",
-      "theme_strategy": "Light Mode (Primary) - Focus on clarity and trust"
+      "name": "SocialRipple",
+      "description": "A Slack-native employee advocacy platform simulation.",
+      "tone": "Professional, Integrated, Efficient, Encouraging",
+      "visual_style": "Slack-Native Simulation (Pixel-perfect Slack clone with branded overlay elements)"
     },
     "typography": {
       "font_family": {
-        "headings": "Manrope, sans-serif",
-        "body": "Inter, sans-serif",
-        "mono": "JetBrains Mono, monospace"
+        "interface": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+        "brand": "Manrope, sans-serif"
+      },
+      "usage": {
+        "headings": "Manrope (SocialRipple specific panels), Inter (Slack UI headers)",
+        "body": "Inter (All chat messages and sidebar text)",
+        "code": "Monaco, Menlo, Consolas, 'Courier New', monospace"
       },
       "scale": {
-        "h1": "text-4xl font-bold tracking-tight lg:text-5xl",
-        "h2": "text-3xl font-semibold tracking-tight",
-        "h3": "text-2xl font-semibold tracking-tight",
-        "p": "leading-7 [&:not(:first-child)]:mt-6",
-        "small": "text-sm font-medium leading-none"
-      },
-      "imports": [
-        "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');"
-      ]
+        "xs": "text-xs (12px)",
+        "sm": "text-sm (13px) - Slack's default body size",
+        "base": "text-base (15px) - Slack's message text size",
+        "lg": "text-lg (18px)",
+        "xl": "text-xl (20px)",
+        "2xl": "text-2xl (24px)"
+      }
     },
     "colors": {
-      "palette": {
-        "primary": {
-          "DEFAULT": "#4F46E5",
-          "foreground": "#FFFFFF",
-          "hover": "#4338CA"
-        },
-        "secondary": {
-          "DEFAULT": "#F1F5F9",
-          "foreground": "#0F172A",
-          "hover": "#E2E8F0"
-        },
-        "background": {
-          "app": "#F8FAFC",
-          "card": "#FFFFFF",
-          "modal": "#FFFFFF"
-        },
-        "text": {
-          "primary": "#0F172A",
-          "secondary": "#64748B",
-          "muted": "#94A3B8"
-        },
-        "brand": {
-          "whatsapp": "#25D366",
-          "slack": "#4A154B"
-        },
-        "status": {
-          "success": "#10B981",
-          "error": "#EF4444",
-          "warning": "#F59E0B"
-        }
+      "slack_theme": {
+        "sidebar_bg": "#3F0E40",
+        "sidebar_text": "#FFFFFF",
+        "sidebar_text_dim": "#B89DB9",
+        "sidebar_active_bg": "#1164A3",
+        "sidebar_active_text": "#FFFFFF",
+        "sidebar_hover": "#350D36",
+        "presence_online": "#2BAC76",
+        "notification_badge": "#CD2553",
+        "mention_badge": "#E01E5A"
       },
-      "gradients": {
-        "subtle_glow": "bg-gradient-to-b from-white to-slate-50",
-        "brand_accent": "bg-gradient-to-r from-indigo-500 to-purple-600"
+      "social_ripple_brand": {
+        "primary": "#2D7FF9",
+        "primary_hover": "#1B6AD8",
+        "secondary": "#F2C744",
+        "accent": "#00C7B7",
+        "surface_bg": "#F8FAFC",
+        "border": "#E2E8F0"
+      },
+      "content": {
+        "text_primary": "#1D1C1D",
+        "text_secondary": "#616061",
+        "link": "#1264A3",
+        "divider": "#DDDDDD"
       }
     },
-    "spacing": {
-      "container_padding": "p-6 md:p-8 lg:p-12",
-      "card_padding": "p-6",
-      "section_gap": "gap-8",
-      "item_gap": "gap-4"
-    },
-    "visual_enhancers": {
-      "radius": {
-        "default": "rounded-xl",
-        "card": "rounded-2xl",
-        "button": "rounded-full"
-      },
-      "shadows": {
-        "card": "shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300",
-        "modal": "shadow-2xl",
-        "button": "shadow-sm hover:shadow-md"
-      },
-      "borders": {
-        "subtle": "border border-slate-100",
-        "focus": "ring-2 ring-indigo-500 ring-offset-2"
-      }
-    }
-  },
-  "components": {
     "layout": {
-      "dashboard": {
-        "type": "Bento Grid Mode B (High Density)",
-        "structure": "Sidebar (Fixed) + Main Feed (Scrollable) + Right Panel (Optional Stats)",
-        "classes": "min-h-screen bg-slate-50/50"
+      "structure": "Three-column layout: Sidebar (260px) | Main Feed (Flex) | Right Panel (300-400px)",
+      "spacing": {
+        "message_gap": "8px",
+        "section_padding": "20px",
+        "sidebar_item_padding": "4px 16px"
+      },
+      "z_index": {
+        "modal": 50,
+        "popover": 40,
+        "header": 30,
+        "sidebar": 20
       }
     },
-    "message_card": {
-      "description": "The core unit of the feed. Mimics a Slack message but elevated.",
-      "structure": [
-        "Header: Avatar (Left) + Name (Bold) + Time (Muted) + Channel Tag (Badge)",
-        "Body: Text Content (Inter) + Rich Media Preview (Rounded-lg)",
-        "Footer: Action Bar with 'Send to WhatsApp' as primary pill button"
-      ],
-      "styling": "bg-white border border-slate-200/60 rounded-2xl p-6 shadow-sm hover:border-indigo-100 transition-colors"
+    "components": {
+      "buttons": {
+        "slack_primary": "bg-[#007a5a] text-white hover:bg-[#148567] font-bold rounded-[4px] px-4 py-1 h-9",
+        "slack_secondary": "bg-white border border-[#1d1c1d4d] text-[#1d1c1d] hover:bg-[#f8f8f8] font-bold rounded-[4px] px-4 py-1 h-9",
+        "social_share": "flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors"
+      },
+      "cards": {
+        "message_attachment": "border-l-4 border-[#E0E0E0] pl-3 ml-1 rounded-r-md bg-white",
+        "demo_panel_card": "bg-white border border-slate-200 shadow-sm rounded-lg p-4"
+      },
+      "avatars": {
+        "size_sm": "h-5 w-5 rounded-sm",
+        "size_md": "h-9 w-9 rounded-md (Slack standard)",
+        "size_lg": "h-12 w-12 rounded-md"
+      }
     },
-    "otp_modal": {
-      "description": "Clean, focused modal for phone verification.",
-      "structure": [
-        "Title: 'Verify Phone Number'",
-        "Description: 'We sent a code to +1 ***-***-**99'",
-        "Input: Shadcn InputOTP (6 digits)",
-        "Action: 'Verify' Button (Full Width)",
-        "Footer: 'Resend code' link"
-      ],
-      "styling": "max-w-md w-full p-8 rounded-3xl bg-white shadow-2xl"
+    "assets": {
+      "images": {
+        "user_avatars": [
+          "https://images.unsplash.com/photo-1655249481446-25d575f1c054?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdCUyMHBvcnRyYWl0fGVufDB8fHx8MTc2OTYxNzQ2MHww&ixlib=rb-4.1.0&q=85",
+          "https://images.unsplash.com/photo-1576558656222-ba66febe3dec?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdCUyMHBvcnRyYWl0fGVufDB8fHx8MTc2OTYxNzQ2MHww&ixlib=rb-4.1.0&q=85",
+          "https://images.unsplash.com/photo-1558531304-a4773b7e3a9c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDR8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdCUyMHBvcnRyYWl0fGVufDB8fHx8MTc2OTYxNzQ2MHww&ixlib=rb-4.1.0&q=85"
+        ],
+        "content_thumbnails": [
+          "https://images.unsplash.com/photo-1758691736933-bb0f88fe2e0c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjV8MHwxfHNlYXJjaHwxfHxjb21wYW55JTIwb2ZmaWNlJTIwbW9kZXJuJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzY5NjE3NDYyfDA&ixlib=rb-4.1.0&q=85",
+          "https://images.unsplash.com/photo-1582192904915-d89c7250b235?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MTN8MHwxfHNlYXJjaHwxfHx0ZWNoJTIwY29uZmVyZW5jZSUyMHByZXNlbnRhdGlvbnxlbnwwfHx8fDE3Njk2MTc0NjV8MA&ixlib=rb-4.1.0&q=85"
+        ],
+        "bot_avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=SocialRipple"
+      },
+      "icons": {
+        "library": "lucide-react",
+        "mapping": {
+          "channels": "Hash",
+          "dm": "MessageSquare",
+          "apps": "Grid",
+          "share": "Share2",
+          "like": "ThumbsUp",
+          "comment": "MessageCircle",
+          "linkedin": "Linkedin",
+          "twitter": "Twitter",
+          "whatsapp": "Phone"
+        }
+      }
+    },
+    "motion": {
+      "hover_effects": "transition-colors duration-200 ease-in-out",
+      "modal_entrance": "animate-in fade-in zoom-in-95 duration-200",
+      "button_click": "active:scale-95 transition-transform"
     }
   },
-  "assets": {
-    "images": {
-      "avatars": [
-        {
-          "url": "https://images.unsplash.com/photo-1576558656222-ba66febe3dec?crop=entropy&cs=srgb&fm=jpg&q=85",
-          "alt": "User Avatar - Professional Male",
-          "category": "user_avatar"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1655249481446-25d575f1c054?crop=entropy&cs=srgb&fm=jpg&q=85",
-          "alt": "User Avatar - Professional Female",
-          "category": "user_avatar"
-        }
-      ],
-      "feed_content": [
-        {
-          "url": "https://images.unsplash.com/photo-1758518729685-f88df7890776?crop=entropy&cs=srgb&fm=jpg&q=85",
-          "alt": "Team Meeting Strategy",
-          "category": "feed_post"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1758873268631-fa944fc5cad2?crop=entropy&cs=srgb&fm=jpg&q=85",
-          "alt": "Company Celebration",
-          "category": "feed_post"
-        }
-      ]
-    },
-    "icons": {
-      "library": "lucide-react",
-      "required": ["MessageSquare", "Share2", "ThumbsUp", "Send", "CheckCircle2", "Smartphone", "Lock"]
-    }
-  },
-  "instructions_to_main_agent": {
-    "general": [
-      "Use 'Manrope' for all headings to give a modern, friendly feel.",
-      "Use 'Inter' for body text for maximum readability.",
-      "Implement the 'Send to WhatsApp' flow as a multi-step process: Click Button -> Check if Phone Exists -> (If No) Open OTP Modal -> (If Yes) Open WhatsApp Web.",
-      "Use 'sonner' for all toast notifications (Success/Error).",
-      "Ensure the 'InputOTP' component is used for the verification screen.",
-      "Do not use generic gray backgrounds; use 'slate-50' or very subtle tints.",
-      "Add 'data-testid' to all interactive elements."
+  "implementation_guide": {
+    "steps": [
+      {
+        "phase": "Layout Setup",
+        "instruction": "Create a fixed-height screen container (h-screen) with flex-row. Left: Sidebar (w-[260px] bg-[#3F0E40]). Middle: Main Content (flex-1 bg-white). Right: Demo Panel (w-[350px] border-l)."
+      },
+      {
+        "phase": "Sidebar Construction",
+        "instruction": "Implement the classic Slack sidebar. Header with 'SocialRipple' dropdown. Sections for 'Channels', 'Direct Messages', 'Apps'. Use the specific colors defined in design_system.colors.slack_theme."
+      },
+      {
+        "phase": "Message Feed",
+        "instruction": "Build the '#company-news' channel view. Header with channel details. Message list area. Input area at bottom (simulated). Create a 'BotMessage' component that renders the 'Please Share' requests."
+      },
+      {
+        "phase": "Interactive Elements",
+        "instruction": "Add the 'Share' buttons to the Bot Message. Clicking 'Share to Twitter' should open a Shadcn Dialog with a preview of the tweet and a 'Post' button."
+      },
+      {
+        "phase": "Right Panel",
+        "instruction": "Create the 'SocialRipple App Home'. This is a dashboard-within-Slack. Show 'Your Impact' stats and 'Available to Share' list."
+      }
     ],
-    "animations": [
-      "Add 'hover:scale-[1.02]' to message cards for a tactile feel.",
-      "Use 'AnimatePresence' (Framer Motion) for the OTP modal entrance.",
-      "Button clicks should have a subtle 'active:scale-95' effect."
+    "universal_rules": [
+      "Use 'Inter' font for all Slack UI elements to maintain authenticity.",
+      "Do not use rounded-full for avatars unless it's the status indicator. Slack avatars are rounded-md.",
+      "Ensure the sidebar color is exactly #3F0E40.",
+      "Use Shadcn components (Dialog, Button, ScrollArea, Separator, Avatar) but style them to match Slack.",
+      "All interactive elements must have data-testid attributes."
     ]
-  },
-  "universal_guidelines": [
-    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients",
-    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
-    "Create depth through layered design elements with z-index hierarchy",
-    "Use glass-morphism effects with backdrop filters (12-24px blur)",
-    "You MUST NOT apply universal transition. Eg: 'transition: all'. This results in breaking transforms. Always add transitions for specific interactive elements like button, input excluding transforms",
-    "You MUST NOT center align the app container, ie do not add '.App { text-align: center; }' in the css file. This disrupts the human natural reading flow of text",
-    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style",
-    "NEVER: use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯📚🎭🎬🎪🎉🎊🎁🎀🎂🍰🎈🎨🎰💰💵💳🏦💎🪙💸🤑📊📈📉💹🔢🏆🥇 etc for icons.",
-    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
-    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
-    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
-    "Main agent relies on these image URLs. Missing categories (especially sponsor logos) = main agent will use placeholder text which is FORBIDDEN",
-    "Prioritize using pre-existing components from src/components/ui when applicable",
-    "Create new components that match the style and conventions of existing components when needed",
-    "Examine existing components to understand the project's component patterns before creating new ones",
-    "Components MUST use named exports (export const ComponentName = ...)",
-    "Pages MUST use default exports (export default function PageName() {...})",
-    "Use 'sonner' for toasts. Sonner component are located in '/app/src/components/ui/sonner.tsx'"
-  ]
+  }
 }
