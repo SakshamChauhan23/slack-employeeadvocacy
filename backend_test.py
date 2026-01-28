@@ -3,7 +3,7 @@ import sys
 import json
 from datetime import datetime
 
-class AdvocacyFlowAPITester:
+class SocialRippleAPITester:
     def __init__(self, base_url="https://whatsapp-share-4.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
