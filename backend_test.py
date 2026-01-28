@@ -79,86 +79,65 @@ class SocialRippleAPITester:
             print(f"   ⚠️  Expected 3 posts, got {len(response) if isinstance(response, list) else 'non-list'}")
         return success, response
 
-    def test_phone_verification_flow(self):
-        """Test complete phone verification flow"""
+    def test_share_post(self):
+        """Test sharing a post to different platforms"""
         user_id = f"test_user_{datetime.now().strftime('%H%M%S')}"
-        phone_number = "+1234567890"
+        post_id = "test_post_id"
         
-        # Step 1: Send OTP
-        success, response = self.run_test(
-            "Send OTP",
-            "POST",
-            "phone/verify",
-            200,
-            data={"phone_number": phone_number, "user_id": user_id}
-        )
+        platforms = ["twitter", "linkedin", "whatsapp"]
         
-        if not success:
-            return False
+        for platform in platforms:
+            success, response = self.run_test(
+                f"Share Post to {platform.title()}",
+                "POST",
+                "share",
+                200,
+                data={"user_id": user_id, "post_id": post_id, "platform": platform}
+            )
             
-        otp_hint = response.get('otp_hint', '')
-        print(f"   OTP Hint: {otp_hint}")
-        
-        # For testing, we'll use a mock OTP (since real OTP is logged to console)
-        # In real testing, you'd get this from backend logs
-        mock_otp = "123456"  # This won't work, but tests the flow
-        
-        # Step 2: Verify OTP (will fail with mock OTP, but tests the endpoint)
-        success, response = self.run_test(
-            "Verify OTP (Mock)",
-            "POST", 
-            "phone/confirm",
-            400,  # Expecting 400 for invalid OTP
-            data={"phone_number": phone_number, "otp_code": mock_otp, "user_id": user_id}
-        )
-        
-        # This should fail as expected with mock OTP
-        print("   ℹ️  OTP verification failed as expected with mock code")
+            if success and response.get('success') == True:
+                print(f"   ✅ Successfully shared to {platform}")
+                print(f"   Message: {response.get('message')}")
+            elif success:
+                print(f"   ⚠️  Unexpected response format for {platform}")
         
         return True
 
-    def test_user_phone_check(self):
-        """Test checking if user has verified phone"""
-        user_id = "nonexistent_user"
+    def test_track_event(self):
+        """Test event tracking"""
+        user_id = f"test_user_{datetime.now().strftime('%H%M%S')}"
+        post_id = "test_post_id"
+        actions = ["like", "retweet", "reply"]
+        
+        for action in actions:
+            success, response = self.run_test(
+                f"Track Event - {action}",
+                "POST",
+                "events/track",
+                200,
+                data={"user_id": user_id, "post_id": post_id, "action": action}
+            )
+            
+            if success and response.get('success') == True:
+                print(f"   ✅ Successfully tracked {action} event")
+        
+        return True
+
+    def test_user_stats(self):
+        """Test getting user stats"""
+        user_id = f"test_user_{datetime.now().strftime('%H%M%S')}"
+        
         success, response = self.run_test(
-            "Check User Phone (Non-existent)",
+            "Get User Stats",
             "GET",
-            f"user/{user_id}/phone",
+            f"stats/{user_id}",
             200
         )
         
-        if success and response.get('has_phone') == False:
-            print("   ✅ Correctly returned has_phone: false for non-existent user")
-        
-        return success
-
-    def test_whatsapp_send_unverified(self):
-        """Test WhatsApp send with unverified user (should fail)"""
-        success, response = self.run_test(
-            "WhatsApp Send (Unverified User)",
-            "POST",
-            "whatsapp/send",
-            400,  # Should fail for unverified user
-            data={"user_id": "unverified_user", "post_id": "test_post"}
-        )
-        
-        if success or response:
-            print("   ✅ Correctly rejected unverified user")
-        
-        return True
-
-    def test_event_tracking(self):
-        """Test event tracking"""
-        success, response = self.run_test(
-            "Track Event",
-            "POST",
-            "events/track",
-            200,
-            data={"user_id": "test_user", "post_id": "test_post", "action": "like"}
-        )
-        
-        if success and response.get('success') == True:
-            print("   ✅ Event tracked successfully")
+        if success:
+            print(f"   ✅ Stats retrieved successfully")
+            print(f"   Total shares: {response.get('total_shares', 0)}")
+            print(f"   Shares by platform: {response.get('shares_by_platform', [])}")
         
         return success
 
