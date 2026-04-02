@@ -39,25 +39,13 @@ export const ShareModal = ({ platform, post, onClose, onConfirm }) => {
   };
 
   const handleConfirm = () => {
-    if (platform === "linkedin" || platform === "linkedin_thoughts") {
-      const url = post.link_url || "https://www.linkedin.com/company/patersoncapital/";
-      let shareUrl;
-      if (platform === "linkedin_thoughts" && thoughts.trim()) {
-        shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(post.title)}&summary=${encodeURIComponent(thoughts)}`;
-      } else {
-        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
-      }
-      window.open(shareUrl, "_blank", "noopener,noreferrer");
-    } else if (platform === "twitter") {
-      const text = `${post.title} ${post.link_url || ""}`.trim();
-      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
-    }
-
     onConfirm();
     toast.success(
-      platform === "linkedin_thoughts"
-        ? "Opening LinkedIn to share with thoughts..."
-        : `Opening ${platform === "twitter" ? "Twitter" : "LinkedIn"} to share...`
+      platform === "twitter"
+        ? "Posted to Twitter!"
+        : platform === "linkedin_thoughts"
+        ? "Shared on LinkedIn with your thoughts!"
+        : "Shared on LinkedIn!"
     );
     onClose();
   };
