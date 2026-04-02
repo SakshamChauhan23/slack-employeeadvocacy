@@ -126,7 +126,16 @@ export const BotMessage = ({ post, onShare, onAction }) => {
             data-testid="post-to-linkedin"
           >
             <Linkedin className="w-3.5 h-3.5 mr-1" />
-            Post to LinkedIn
+            Share
+          </Button>
+          <Button
+            size="sm"
+            className="h-7 text-xs bg-white border border-[#1d1c1d4d] text-[#1d1c1d] hover:bg-[#f8f8f8] font-semibold"
+            onClick={() => onShare('linkedin_thoughts', post)}
+            data-testid="post-to-linkedin-thoughts"
+          >
+            <Linkedin className="w-3.5 h-3.5 mr-1" />
+            Share with Thoughts
           </Button>
           <Button
             size="sm"

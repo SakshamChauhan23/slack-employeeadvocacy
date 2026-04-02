@@ -8,7 +8,7 @@ import axios from "axios";
 import { toast } from "sonner";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+const API = BACKEND_URL ? `${BACKEND_URL}/api` : null;
 
 export const PhoneModal = ({ open, onClose, onSubmit }) => {
   const [phone, setPhone] = useState("");
@@ -25,10 +25,12 @@ export const PhoneModal = ({ open, onClose, onSubmit }) => {
 
     setLoading(true);
     try {
-      await axios.post(`${API}/phone/verify`, {
-        phone_number: phone,
-        user_id: userId
-      });
+      if (API) {
+        await axios.post(`${API}/phone/verify`, {
+          phone_number: phone,
+          user_id: userId
+        });
+      }
       toast.success("OTP sent to your phone!");
       onSubmit(phone);
     } catch (error) {

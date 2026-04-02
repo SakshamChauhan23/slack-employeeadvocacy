@@ -7,7 +7,7 @@ import axios from "axios";
 import { toast } from "sonner";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+const API = BACKEND_URL ? `${BACKEND_URL}/api` : null;
 
 export const OTPModal = ({ open, onClose, phoneNumber, userId, onSuccess }) => {
   const [otp, setOtp] = useState("");
@@ -27,11 +27,13 @@ export const OTPModal = ({ open, onClose, phoneNumber, userId, onSuccess }) => {
 
     setLoading(true);
     try {
-      await axios.post(`${API}/phone/confirm`, {
-        phone_number: phoneNumber,
-        otp_code: otp,
-        user_id: userId
-      });
+      if (API) {
+        await axios.post(`${API}/phone/confirm`, {
+          phone_number: phoneNumber,
+          otp_code: otp,
+          user_id: userId
+        });
+      }
       toast.success("Phone number verified successfully!");
       onSuccess();
     } catch (error) {
